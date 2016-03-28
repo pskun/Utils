@@ -1,18 +1,18 @@
 #ifndef _BLOOM_FILTER_H
 #define _BLOOM_FILTER_H
 
-namespace bloomfilter {
+namespace utils {
 
 class BloomFilter {
 public:
     BloomFilter() = default;
     virtual ~BloomFilter() = default;
 
-    template <typename T>
-    virtual insert(const T &t) = 0;
+    virtual void init();
 
-    template <typename T>
-    virtual size_t find(const T &t) = 0;
+    virtual void insert(const char* const data) = 0;
+
+    virtual size_t find(const char* const data) = 0;
 
     virtual void clear() = 0;
 };

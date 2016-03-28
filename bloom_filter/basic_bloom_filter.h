@@ -1,22 +1,27 @@
-#ifndef _BASIC_BLOOM_FILTER_H
-#define _BASIC_BLOOM_FILTER_H
+#ifndef _UTILS_BASIC_BLOOM_FILTER_H
+#define _UTILS_BASIC_BLOOM_FILTER_H
 
 #include "bloom_filter.h"
 
-namespace bloomfilter {
+namespace utils {
 
 class BasicBloomFilter : public BloomFilter {
 public:
     BasicBloomFilter() = default;
     BasicBloomFilter(const BasicBloomFilter &filter) = default;
 
-    template <typename T>
-    virtual insert(const T &t);
+    virtual void init();
 
-    template <typename T>
-    virtual size_t find(const T &t);
+    virtual void insert(const char* const data);
+
+    virtual size_t find(const char* const data);
 
     virtual void clear();
+
+private:
+    unsigned char * bitvector;
+    size_t nElements;
+    unsigned long long nbits;
 };
 
 }
